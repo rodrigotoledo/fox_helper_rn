@@ -4,7 +4,9 @@
  *
  * @format
  */
-
+if (__DEV__) {
+  require("./ReactotronConfig");
+}
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
