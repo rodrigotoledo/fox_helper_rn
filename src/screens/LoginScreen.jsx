@@ -6,6 +6,7 @@ import Auth0 from 'react-native-auth0';
 
 import config from './auth0';
 import Logo from '../components/Logo';
+import GradientBackground from '../components/GradientBackground';
 
 const auth0 = new Auth0(config);
 
@@ -34,8 +35,7 @@ const LoginScreen = () => {
   const loggedIn = accessToken !== null;
   
   return (
-    <View className="flex-1 justify-center items-center bg-orange-50">
-
+    <GradientBackground>
       <Logo />
       
       <Text className="text-xl font-light tracking-wide text-dark-orange" style={styles.protestGuerrillaRegular}>
@@ -51,7 +51,7 @@ const LoginScreen = () => {
       >
         {loggedIn ? 'Logout' : 'Login'}
       </Button>
-    </View>
+    </GradientBackground>
   );
 }
 
