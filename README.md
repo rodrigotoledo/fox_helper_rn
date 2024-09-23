@@ -42,6 +42,17 @@ npm run ios
 yarn ios
 ```
 
+# For ReactoTron
+
+```bash
+adb reverse tcp:9090 tcp:9090
+```
+
+```bash
+adb devices
+adb -s device-name reverse tcp:8081 tcp:8081
+```
+
 If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
 This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.

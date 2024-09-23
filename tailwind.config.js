@@ -6,9 +6,16 @@ module.exports = {
       colors: {
         'light-orange': '#FFF5E1',
         'dark-orange': '#E95420',
+        'strong-dark-orange': '#b33205',
       },
+    },
+    fontFamily: {
+      protest: ["ProtestGuerrilla", "regular"],
+      protest_regular: ["ProtestGuerrilla-Regular", "Regular"]
     },
   },
   plugins: [],
+  assets: [
+  ],
 }
 
