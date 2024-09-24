@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Text, Alert, View, StyleSheet } from 'react-native';
-import { Button } from 'react-native-paper';
+import { Text, Alert } from 'react-native';
+import { Button, Icon } from 'react-native-paper';
 import Auth0 from 'react-native-auth0';
-
-
 import config from './auth0';
+import customFont from '../components/CustomFont';
 import Logo from '../components/Logo';
 import GradientBackground from '../components/GradientBackground';
 
@@ -38,27 +37,25 @@ const LoginScreen = () => {
     <GradientBackground>
       <Logo />
       
-      <Text className="text-xl font-light tracking-wide text-dark-orange" style={styles.protestGuerrillaRegular}>
-        You are{loggedIn ? ' ' : ' not '}logged in.
+      <Text className="text-xl font-thin text-orange-500" style={customFont.protestRiotRegular}>
+        Você ainda não está logado...
       </Text>
       <Button
-        mode="contained"
+        mode="text"
+        size={20}
+        icon={({ size, color }) => (
+          <Icon source="account-arrow-right" size={30} color='#FFFFFF' />
+        )}
         onPress={loggedIn ? onLogout : onLogin}
         disabled={loggedIn}
         className="mt-8 rounded-lg bg-dark-orange"
-        labelStyle={{ fontSize: 18, fontWeight: 'bold', color: '#FFF' }}
         contentStyle={{ paddingVertical: 10, paddingHorizontal: 20 }}
       >
-        {loggedIn ? 'Logout' : 'Login'}
+        <Text className="text-white text-xl" style={customFont.protestRiotRegular}>{loggedIn ? 'Sair' : 'Entrar'}</Text>
       </Button>
     </GradientBackground>
   );
 }
 
-const styles = StyleSheet.create({
-  protestGuerrillaRegular: {
-    fontFamily: 'ProtestGuerrilla-Regular',
-  },
-});
 
 export default LoginScreen;

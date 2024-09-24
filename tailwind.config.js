@@ -8,11 +8,12 @@ module.exports = {
         'dark-orange': '#E95420',
         'strong-dark-orange': '#b33205',
       },
+      fontFamily: {
+        protest: ["ProtestGuerrilla-Regular"],
+        protest_regular: ["ProtestGuerrilla-Regular", "Regular"]
+      },
     },
-    fontFamily: {
-      protest: ["ProtestGuerrilla", "regular"],
-      protest_regular: ["ProtestGuerrilla-Regular", "Regular"]
-    },
+    
   },
   plugins: [],
   assets: [
