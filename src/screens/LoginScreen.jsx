@@ -48,7 +48,6 @@ const LoginScreen = () => {
         const { latitude, longitude } = position.coords;
         setLocation({ latitude, longitude });
 
-        Enviar para o servidor a cada 5 segundos
         sendLocationToServer(latitude, longitude);
       },
       (error) => {
@@ -74,13 +73,13 @@ const LoginScreen = () => {
   useEffect(() => {
     fadeAnim.value = withTiming(1, { duration: 1000 });
     translateY.value = withTiming(0, { duration: 1000 });
-    // const init = async () => {
-    //   const permissionGranted = await requestLocationPermission();
-    //   if (permissionGranted) {
-    //     setupBackgroundFetch();
-    //   }
-    // };
-    // init();
+    const init = async () => {
+      const permissionGranted = await requestLocationPermission();
+      if (permissionGranted) {
+        setupBackgroundFetch();
+      }
+    };
+    init();
   }, []);
   
   const onLogin = () => {
