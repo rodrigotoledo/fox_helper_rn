@@ -1,65 +1,5 @@
-// import React, {createContext, useContext, useMemo} from 'react';
-// import {Alert} from 'react-native';
-// import {useQuery, useMutation, useQueryClient} from '@tanstack/react-query';
-// import axios from 'axios';
-
-// const AuthContext = createContext();
-
-// export const AuthProvider = ({children}) => {
-
-//   const loginMutation = useMutation({
-//     mutationFn: ({email,password}) => {
-//     },
-//     onSuccess: data => {
-//       // navigate....
-//     },
-//   });
-
-//   const logoutMutation = useMutation({
-//     mutationFn: () => {
-//     },
-//     onSuccess: data => {
-//       // navigate....
-//     },
-//   });
-
-//   const resetPasswordMutation = useMutation({
-//     mutationFn: ({email}) => {
-//     },
-//     onSuccess: data => {
-//       // navigate....
-//     },
-//   });
-
-//   const loginTask = ({email, password}) => {
-//     loginMutation.mutate({email: email, password: password});
-//   };
-
-//   const logoutTask = () => {
-//     logoutMutation.mutate();
-//   };
-  
-//   const resetPasswordTask = ({email}) => {
-//     resetPasswordMutation.mutate({email: email});
-//   };
-
-//   const value = useMemo(
-//     () => ({
-//       loginTask,
-//       logoutTask,
-//       resetPasswordTask,
-//     }),
-//     [loginMutation, logoutMutation, resetPasswordMutation],
-//   );
-
-//   return (
-//     <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-//   );
-// };
-
-// export const useAuthContext = () => useContext(AuthContext);
-
 import React, { createContext, useState, useEffect } from 'react';
+import { Auth0Provider } from 'react-native-auth0';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const AuthContext = createContext();
@@ -100,8 +40,10 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ login, logout, userToken, isLoading }}>
-      {children}
-    </AuthContext.Provider>
+    <Auth0Provider domain={process.env.DOMAIN} clientId={process.env.CLIENT_ID}>
+      <AuthContext.Provider value={{ login, logout, userToken, isLoading }}>
+        {children}
+      </AuthContext.Provider>
+    </Auth0Provider>
   );
 };

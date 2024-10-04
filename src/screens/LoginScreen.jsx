@@ -63,7 +63,7 @@ const LoginScreen = () => {
           className="rounded-lg bg-dark-orange"
           contentStyle={{ paddingVertical: 10, paddingHorizontal: 20 }}
         >
-          <Text className="text-white text-xl" style={customFont.protestRiotRegular}>{loggedIn ? 'Sair' : 'Entrar'}</Text>
+          <Text className="text-xl text-white" style={customFont.protestRiotRegular}>{loggedIn ? 'Sair' : 'Entrar'}</Text>
         </Button>
       </Animated.View>
       <Animated.View style={[fadeInStyle]}>

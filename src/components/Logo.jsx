@@ -34,7 +34,7 @@ const Logo = () => {
   });
 
   return (
-    <View className="flex justify-center items-center p-5 space-y-4">
+    <View className="flex items-center justify-center p-5 space-y-4">
       <Animated.View style={iconStyle}>
         <Icon
           name="paw"
