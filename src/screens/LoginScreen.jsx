@@ -70,6 +70,23 @@ const LoginScreen = () => {
     }
   };
 
+  const setupBackgroundFetch = () => {
+    BackgroundFetch.configure(
+      {
+        minimumFetchInterval: 15, // Tempo mínimo para execução da tarefa em background
+        stopOnTerminate: false,
+        startOnBoot: true,
+      },
+      async () => {
+        console.log("[BackgroundFetch]:");
+        startLocationTracking();
+      },
+      (error) => {
+        console.error("BackgroundFetch failed to start:", error);
+      }
+    );
+  };
+
   useEffect(() => {
     fadeAnim.value = withTiming(1, { duration: 1000 });
     translateY.value = withTiming(0, { duration: 1000 });
