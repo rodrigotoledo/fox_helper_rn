@@ -45,14 +45,14 @@ const Logo = () => {
       </Animated.View>
 
       <Animated.View style={textStyle1}>
-        <Text className="text-4xl font-light text-dark-orange" style={customFont.protestGuerrillaRegular}>
+        <Text className="text-4xl font-light text-strong-dark-orange" style={customFont.protestGuerrillaRegular}>
           FoxHelper!
         </Text>
       </Animated.View>
 
       <Animated.View style={textStyle2}>
-        <Text className="text-3xl font-light text-dark-orange" style={customFont.protestRiotRegular}>
-          Aqui VOCÊ é cuidado.
+        <Text className="text-3xl font-light text-strong-dark-orange" style={customFont.protestRiotRegular}>
+          YOU are the FIRST
         </Text>
       </Animated.View>
     </View>

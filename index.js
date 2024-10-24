@@ -6,12 +6,13 @@ import {AppRegistry} from 'react-native';
 import App from './App';
 import {name as appName} from './app.json';
 import {queryClient, QueryClientProvider} from './queryClient';
-import axios from 'axios';
-axios.defaults.baseURL = process.env.API_DOMAIN;
+import { AxiosProvider } from './src/context/AxiosContext';
 
 const RootComponent = () => (
   <QueryClientProvider client={queryClient}>
-    <App />
+    <AxiosProvider>
+      <App />
+    </AxiosProvider>
   </QueryClientProvider>
 );
 

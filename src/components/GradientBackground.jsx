@@ -7,7 +7,7 @@ const GradientBackground = ({ children }) => {
       start={{ x: 0.0, y: 0 }}
       end={{ x: 0.0, y: 1.0 }}
       colors={['#f0c2a1', '#ffe9d9']}
-      className='flex flex-1 h-full items-center justify-center'
+      className='flex h-full items-center justify-start'
     >
       {children}
     </LinearGradient>
