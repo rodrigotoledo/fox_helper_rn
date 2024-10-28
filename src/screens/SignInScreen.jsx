@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { TouchableOpacity, Text, Alert, BackHandler, View, PermissionsAndroid } from 'react-native';
+import { TouchableOpacity, Text, BackHandler, View, PermissionsAndroid } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { Button, Icon } from 'react-native-paper';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useFocusEffect, useNavigation, CommonActions } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import BackgroundFetch from "react-native-background-fetch";
 import customFont from '../components/CustomFont';
 import Logo from '../components/Logo';
 import GradientBackground from '../components/GradientBackground';
 import { useAxios } from '../context/AxiosContext';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 
-const SignInScreen = ({navigation}) => {
+const SignInScreen = () => {
+  const {navigate} = useNavigation()
   const axios = useAxios();
   const [accessToken, setAccessToken] = useState(null);
   const [email, setEmail] = useState('example@example.com');
@@ -116,7 +117,7 @@ const SignInScreen = ({navigation}) => {
       
       await AsyncStorage.setItem('authToken', token);
       setError('')
-      navigation.navigate('TriageStackGroup')
+      navigate('SignInStackGroup')
     } catch (errorException) {
       
       console.log('Error sign in:', errorException);

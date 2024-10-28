@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, ScrollView, Text } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import GradientBackground from '../components/GradientBackground';
 import InternalLogo from '../components/InternalLogo';
@@ -40,10 +40,9 @@ const PatientDataScreen = ({navigation}) => {
   return (
     <GradientBackground>
       <InternalLogo />
-      <ScrollView className='bg-orange-100 w-full px-2'>
+      <Text className='text-2xl font-bold text-orange-700 mb-2'>Patient Registration</Text>
+      <ScrollView className='w-full p-4 mb-2'>
         <View className="flex flex-col w-full h-full">
-          <Text>Patient Registration</Text>
-
           <TextInput
             activeOutlineColor='#b33205'
             outlineColor='#b33205'
@@ -79,44 +78,33 @@ const PatientDataScreen = ({navigation}) => {
             placeholder="Height in cm"
           />
 
-          <View className="flex flex-row h-40 w-full justify-between">
-            <Button
-  mode="contained"
-  onPress={handleSubmit}
-  contentStyle={{ height: 160, width: 160 }} // Ajusta o tamanho do botão
-  className="rounded-full justify-center items-center"
->
-  {/* Estrutura interna do botão para organizar o texto acima do ícone */}
-  <View style={{ alignItems: 'center' }}>
-    <Text style={{ fontSize: 18, color: 'white', marginBottom: 4 }}>
-      Save Information
-    </Text>
-    <MaterialCommunityIcons
-      name="chevron-double-down"
-      size={32} // Tamanho do ícone
-      color="white" // Cor do ícone
-    />
-  </View>
-</Button>
-
-<Button
-  mode="contained"
-  onPress={handleSubmit}
-  contentStyle={{ height: 160, width: 160 }} // Ajusta o tamanho do botão
-  className="rounded-full justify-center items-center"
->
-  {/* Estrutura interna do botão para organizar o texto acima do ícone */}
-  <View style={{ alignItems: 'center' }}>
-    <Text style={{ fontSize: 18, color: 'white', marginBottom: 4 }}>
-      Record by Voice
-    </Text>
-    <MaterialCommunityIcons
-      name="record-rec"
-      size={32} // Tamanho do ícone
-      color="white" // Cor do ícone
-    />
-  </View>
-</Button>
+          <View className="flex flex-row w-full justify-around my-4">
+            <TouchableOpacity
+              onPress={handleSubmit}
+              className="rounded-full w-40 h-16 justify-center items-center bg-dark-orange"
+              >
+              <MaterialCommunityIcons
+                name="content-save"
+                size={32}
+                color="white"
+              />
+              <Text className='text-white text-center font-bold'>
+                Save Information
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={handleSubmit}
+              className="rounded-full w-40 h-16 justify-center items-center bg-dark-orange"
+              >
+              <MaterialCommunityIcons
+                name="record-rec"
+                size={32}
+                color="white"
+              />
+              <Text className='text-white text-center font-bold'>
+                Save by Voice
+              </Text>
+            </TouchableOpacity>
           </View>
         </View>
       </ScrollView>

@@ -9,20 +9,35 @@ import OwnEmergencyScreen from './src/screens/OwnEmergencyScreen';
 import EmergencyScreen from './src/screens/EmergencyScreen';
 import MedicalTriageScreen from './src/screens/MedicalTriageScreen';
 import PatientDataScreen from './src/screens/PatientDataScreen';
+import {UnGroupedTabs} from './UnAuthenticatedNavigation';
+import theme from './theme';
+import PatientListScreen from './src/screens/PatientListScreen';
+import SignInScreen from './src/screens/SignInScreen';
+
+
 
 // TriageStack
 
 const TriageStack = createStackNavigator()
 
+
 function TriageStackGroup(){
   return (
     <TriageStack.Navigator screenOptions={{headerShown: false}}>
-      <TriageStack.Screen name="HomeScreen" component={HomeScreen} />
+      <TriageStack.Screen name="PatientListScreen" component={PatientListScreen} />
       <TriageStack.Screen name="PatientDataScreen" component={PatientDataScreen} />
-      <TriageStack.Screen name="MedicalTriageScreen" component={MedicalTriageScreen} />
-      <TriageStack.Screen name="EmergencyScreen" component={EmergencyScreen} />
-      <TriageStack.Screen name="OwnEmergencyScreen" component={OwnEmergencyScreen} />
     </TriageStack.Navigator>
+  )
+}
+
+// Sign Out Stack
+const SignOutStack = createStackNavigator()
+function SignOutStackGroup(){
+  return (
+    <SignOutStack.Navigator screenOptions={{headerShown: false}}>
+      <SignOutStack.Screen name="SignOutScreen" component={SignOutScreen} />
+      <SignOutStack.Screen name="SignInScreen" component={SignInScreen} />
+    </SignOutStack.Navigator>
   )
 }
 
@@ -31,7 +46,7 @@ function TriageStackGroup(){
 
 const BottomTabs = createBottomTabNavigator()
 
-function GroupedTabs({theme}){
+export function AuthGroupedTabs(){
   return(
     <BottomTabs.Navigator
       screenOptions={({ route, navigation }) => ({
@@ -51,25 +66,29 @@ function GroupedTabs({theme}){
           let colorFocus;
           colorFocus = focused ? theme.colors.active : theme.colors.inActive;
           if(route.name === 'TriageStackGroup'){
-            iconName = focused ? 'account-check' : 'account-check-outline';
-          }else if(route.name === 'UserInfoScreen'){
-            iconName = focused ? 'account-check' : 'account-check-outline';
+            iconName = focused ? 'stethoscope' : 'stethoscope';
+          }else if(route.name === 'MedicalTriageScreen'){
+            iconName = focused ? 'hospital-box' : 'hospital-box';
+          }else if(route.name === 'EmergencyScreen'){
+            iconName = focused ? 'ambulance' : 'ambulance';}
+          else if(route.name === 'OwnEmergencyScreen'){
+            iconName = focused ? 'account-injury' : 'account-injury';
           }else{
-            iconName = focused ? 'account-plus' : 'account-plus-outline';
+            iconName = focused ? 'alert-circle' : 'alert-circle';
           }
           return <MaterialCommunityIcons name={iconName} size={size} color={colorFocus} />;
         },
         headerShown: false,
       })}
     >
-      <BottomTabs.Screen name="TriageStackGroup" component={TriageStackGroup} options={{title: 'Triage'}}/>
-      <BottomTabs.Screen name="UserInfoScreen" component={UserInfoScreen} options={{title: 'User Info'}}/>
-      {/* TODO: adicionar lista e colocar user info no topo */}
-      <BottomTabs.Screen name="SignOutScreen" component={SignOutScreen} options={{title: 'Sign out'}}/>
+      <BottomTabs.Screen name="TriageStackGroup" component={TriageStackGroup} options={{title: 'Patient Data'}}/>
+      <BottomTabs.Screen name="EmergencyScreen" component={EmergencyScreen} options={{title: 'Emergency'}}/>
+      <BottomTabs.Screen name="OwnEmergencyScreen" component={OwnEmergencyScreen} options={{title: 'Own Emergency'}}/>
+      <BottomTabs.Screen name="SignOutStackGroup" component={SignOutStackGroup} options={{title: 'Sign Out'}}/>
     </BottomTabs.Navigator>
   )
 }
 
-const AuthenticatedNavigation = ({ theme }) => <GroupedTabs theme={theme} />;
+const AuthenticatedNavigation = () => <AuthGroupedTabs />;
 
 export default AuthenticatedNavigation;
