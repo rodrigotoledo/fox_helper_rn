@@ -4,7 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { Button, Icon } from 'react-native-paper';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import { useFocusEffect, useNavigation, CommonActions } from '@react-navigation/native';
 import Geolocation from '@react-native-community/geolocation';
 import BackgroundFetch from "react-native-background-fetch";
 import customFont from '../components/CustomFont';
@@ -12,14 +12,12 @@ import Logo from '../components/Logo';
 import GradientBackground from '../components/GradientBackground';
 import { useAxios } from '../context/AxiosContext';
 
-
-const SignInScreen = () => {
+const SignInScreen = ({navigation}) => {
   const axios = useAxios();
   const [accessToken, setAccessToken] = useState(null);
   const [email, setEmail] = useState('example@example.com');
   const [password, setPassword] = useState('password');
   const [error, setError] = useState('');
-  const navigation = useNavigation()
   const [location, setLocation] = useState(null);
 
   const fadeAnim = useSharedValue(0);
@@ -64,6 +62,7 @@ const SignInScreen = () => {
     BackHandler.exitApp()
   };
 
+// #TODO: send location to server
   const sendLocationToServer = async (latitude, longitude) => {
     try {
       // await axios.post('https://your-server-endpoint.com/location', {
@@ -112,12 +111,14 @@ const SignInScreen = () => {
     };
 
     try {
-      const response = await axios.post('/sign_in', data);
+      const response = await axios.post('/sign-in', data);
       const token = response.data.token;
-      console.log(response.data)
+      
       await AsyncStorage.setItem('authToken', token);
-      navigation.navigate('AuthenticatedTabsStack')
+      setError('')
+      navigation.navigate('TriageStackGroup')
     } catch (errorException) {
+      
       console.log('Error sign in:', errorException);
       setError('Invalid credentials');
     }

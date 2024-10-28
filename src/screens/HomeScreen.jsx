@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, CommonActions } from '@react-navigation/native';
 import GradientBackground from '../components/GradientBackground';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import InternalLogo from '../components/InternalLogo';
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}) => {
   const [expanded, setExpanded] = useState(true);
-  const navigation = useNavigation()
+  // const navigation = useNavigation()
 
   return (
   <GradientBackground>
@@ -20,7 +20,7 @@ const HomeScreen = () => {
         <TouchableOpacity 
           className="w-40 h-40 bg-orange-500 rounded-lg justify-center items-center shadow-lg"
           activeOpacity={0.8}  // Leve opacidade ao clicar
-          onPress={() => navigation.navigate('PatientData')}
+          onPress={() => navigation.navigate({name: 'PatientDataScreen'})}
         >
           <MaterialCommunityIcons name="stethoscope" size={40} color="white" />
           <Text className="text-neutral-50 mt-2">Patient Data</Text>
@@ -30,7 +30,7 @@ const HomeScreen = () => {
         <TouchableOpacity 
           className="w-40 h-40 bg-orange-600 rounded-lg justify-center items-center shadow-lg"
           activeOpacity={0.8} 
-          onPress={() => navigation.navigate('MedicalTriage')}
+          onPress={() => CommonActions.navigate('MedicalTriageScreen')}
         >
           <MaterialCommunityIcons name="hospital-box" size={40} color="white" />
           <Text className="text-neutral-50 mt-2">Medical Triage</Text>
@@ -43,7 +43,7 @@ const HomeScreen = () => {
         <TouchableOpacity 
           className="w-40 h-40 bg-orange-700 rounded-lg justify-center items-center shadow-lg"
           activeOpacity={0.8} 
-          onPress={() => navigation.navigate('Emergency')}
+          onPress={() => navigation.navigate('EmergencyScreen')}
         >
           <MaterialCommunityIcons name="ambulance" size={40} color="white" />
           <Text className="text-neutral-50 mt-2">Emergency</Text>
@@ -53,7 +53,7 @@ const HomeScreen = () => {
         <TouchableOpacity 
           className="w-40 h-40 bg-orange-800 rounded-lg justify-center items-center shadow-lg"
           activeOpacity={0.8} 
-          onPress={() => navigation.navigate('OwnEmergency')}
+          onPress={() => navigation.navigate('OwnEmergencyScreen')}
         >
           <MaterialCommunityIcons name="alert-circle" size={40} color="white" />
           <Text className="text-neutral-50 mt-2">Own Emergency</Text>

@@ -3,6 +3,7 @@ import { View, ScrollView, Text } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import GradientBackground from '../components/GradientBackground';
 import InternalLogo from '../components/InternalLogo';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const PatientDataScreen = ({navigation}) => {
 
@@ -39,7 +40,7 @@ const PatientDataScreen = ({navigation}) => {
   return (
     <GradientBackground>
       <InternalLogo />
-      <ScrollView>
+      <ScrollView className='bg-orange-100 w-full px-2'>
         <View className="flex flex-col w-full h-full">
           <Text>Patient Registration</Text>
 
@@ -78,13 +79,45 @@ const PatientDataScreen = ({navigation}) => {
             placeholder="Height in cm"
           />
 
-          <Button
-            mode="contained"
-            onPress={handleSubmit}
-            className
-          >
-            Submit
-          </Button>
+          <View className="flex flex-row h-40 w-full justify-between">
+            <Button
+  mode="contained"
+  onPress={handleSubmit}
+  contentStyle={{ height: 160, width: 160 }} // Ajusta o tamanho do botão
+  className="rounded-full justify-center items-center"
+>
+  {/* Estrutura interna do botão para organizar o texto acima do ícone */}
+  <View style={{ alignItems: 'center' }}>
+    <Text style={{ fontSize: 18, color: 'white', marginBottom: 4 }}>
+      Save Information
+    </Text>
+    <MaterialCommunityIcons
+      name="chevron-double-down"
+      size={32} // Tamanho do ícone
+      color="white" // Cor do ícone
+    />
+  </View>
+</Button>
+
+<Button
+  mode="contained"
+  onPress={handleSubmit}
+  contentStyle={{ height: 160, width: 160 }} // Ajusta o tamanho do botão
+  className="rounded-full justify-center items-center"
+>
+  {/* Estrutura interna do botão para organizar o texto acima do ícone */}
+  <View style={{ alignItems: 'center' }}>
+    <Text style={{ fontSize: 18, color: 'white', marginBottom: 4 }}>
+      Record by Voice
+    </Text>
+    <MaterialCommunityIcons
+      name="record-rec"
+      size={32} // Tamanho do ícone
+      color="white" // Cor do ícone
+    />
+  </View>
+</Button>
+          </View>
         </View>
       </ScrollView>
     </GradientBackground>

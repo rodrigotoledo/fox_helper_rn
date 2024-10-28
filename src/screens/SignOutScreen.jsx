@@ -10,14 +10,16 @@ import Logo from '../components/Logo';
 import { useNavigation } from '@react-navigation/native';
 
 
-const SignOutScreen = () => {
+const SignOutScreen = ({navigation}) => {
 
   useFocusEffect(() => {
-    fadeAnim.value = withTiming(1, { duration: 1000 });
-    translateY.value = withTiming(0, { duration: 1000 });
-    removeAuthToken();
+    fadeAnim.value = withTiming(1, { duration: 2000 });
+    translateY.value = withTiming(0, { duration: 2000 });
+    const timeoutId = setTimeout(() => {
+      removeAuthToken();
+    }, 2000);
+    return () => clearTimeout(timeoutId);
   });
-  const navigation = useNavigation()
 
 
   const fadeAnim = useSharedValue(0);

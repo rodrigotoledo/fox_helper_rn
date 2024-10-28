@@ -1,8 +1,7 @@
 import React, { createContext, useContext } from 'react';
 import axios from 'axios';
-import Config from 'react-native-config';
-
-axios.defaults.baseURL = Config.API_DOMAIN || process.env.API_DOMAIN;
+axios.defaults.baseURL = process.env.REACT_APP_API_DOMAIN;
+console.log(process.env.REACT_APP_API_DOMAIN)
 
 const AxiosContext = createContext();
 
